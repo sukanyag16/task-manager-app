@@ -1,48 +1,49 @@
 import { useState } from "react";
-import { Link,
-         useNavigate } from "react-router-dom";
-
-import API from "../services/api";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
 
   const navigate = useNavigate();
 
-  const [email,setEmail] =
+  const [email, setEmail] =
     useState("");
 
-  const [password,setPassword] =
+  const [password, setPassword] =
     useState("");
 
-  const [error,setError] =
+  const [error, setError] =
     useState("");
 
   const handleLogin =
-    async (e) => {
+    (e) => {
 
       e.preventDefault();
 
-      try {
-
-        const res =
-          await API.post(
-            "/login",
-            {
-              email,
-              password
-            }
-          );
-
-        localStorage.setItem(
-          "token",
-          res.data.token
+      const savedUser =
+        JSON.parse(
+          localStorage.getItem(
+            "demoUser"
+          )
         );
 
-        navigate("/dashboard");
+      if (
+        savedUser &&
+        savedUser.email === email &&
+        savedUser.password === password
+      ) {
+
+        localStorage.setItem(
+          "isLoggedIn",
+          "true"
+        );
+
+        navigate(
+          "/dashboard"
+        );
 
       }
 
-      catch {
+      else {
 
         setError(
           "Invalid credentials"
@@ -60,38 +61,55 @@ function Login() {
 
         <h1>TaskFlow</h1>
 
-        <form onSubmit={handleLogin}>
+        <form
+          onSubmit={
+            handleLogin
+          }
+        >
 
           <input
+            type="email"
             placeholder="Email"
             value={email}
-            onChange={(e)=>
-              setEmail(e.target.value)}
+            onChange={(e) =>
+              setEmail(
+                e.target.value
+              )
+            }
+            required
           />
 
           <input
             type="password"
             placeholder="Password"
             value={password}
-            onChange={(e)=>
-              setPassword(e.target.value)}
+            onChange={(e) =>
+              setPassword(
+                e.target.value
+              )
+            }
+            required
           />
 
-          <button>
+          <button type="submit">
             Login
           </button>
 
         </form>
 
         <p>
-          New user?
+          New user?{" "}
           <Link to="/register">
             Register
           </Link>
         </p>
 
         {error && (
-          <p className="error">
+          <p
+            style={{
+              color: "red"
+            }}
+          >
             {error}
           </p>
         )}
@@ -101,6 +119,7 @@ function Login() {
     </div>
 
   );
+
 }
 
 export default Login;

@@ -25,16 +25,18 @@ function Register() {
 
       e.preventDefault();
 
-      await API.post(
-        "/register",
-        {
-          name,
-          email,
-          password
-        }
-      );
+      localStorage.setItem(
+  "demoUser",
+  JSON.stringify({
+    name,
+    email,
+    password
+  })
+);
 
-      navigate("/");
+alert("Registration successful");
+
+navigate("/");
 
     };
 
