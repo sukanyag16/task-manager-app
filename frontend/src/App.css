@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  background: #f4f6f9;
+  font-family: Arial, sans-serif;
+}
+
+.auth-container {
+  height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+}
+
+.auth-card {
+  background: white;
+
+  width: 350px;
+
+  padding: 30px;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 5px 20px
+    rgba(0,0,0,.1);
+}
+
+.auth-card form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+input {
+  padding: 12px;
+}
+
+button {
+  padding: 12px;
+
+  border: none;
+
+  background: #4f46e5;
+
+  color: white;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.dashboard {
+  padding: 20px;
+}
+
+.board {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap: 20px;
+}
+
+.column {
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 15px;
+}
+
+.task-card {
+  background: #eef2ff;
+
+  margin-top: 10px;
+
+  padding: 12px;
+
+  border-radius: 10px;
+}
+.task-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 15px;
+}
+
+.task-card {
+  background: #eef2ff;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.task-card button {
+  font-size: 14px;
+}
